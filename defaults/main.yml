@@ -1,0 +1,34 @@
+---
+# default variables
+# please overwrite in the playbook.yml
+
+ZSH_PACKAGES:
+  - zsh
+  - git
+
+OHMYZSH_REPO: https://github.com/robbyrussell/oh-my-zsh.git
+
+# Plugins to install
+# https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins
+OHMYZSH_PLUGINS:
+  - bundler
+  - gem
+  - git
+  - rake
+  - ruby
+  - rsync
+  - sudo
+  - systemd
+  - ubuntu
+  - tmux
+  - zsh_reload
+  - zsh-navigation-tools
+
+#####################
+# .oh-my-zsh values #
+#####################
+#
+# for specifics what all options do, read files/zshrc.zsh-template
+# you can also really tweak the file and rerun the playbook
+# to install it into place
+ZSH_THEME: "ys"

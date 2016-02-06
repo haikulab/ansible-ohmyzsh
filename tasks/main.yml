@@ -1,0 +1,28 @@
+---
+
+##################################
+# ZSH + OhMyZsh
+#################################
+
+- name: Install zsh and friends
+  become: yes
+  apt: pkg={{ item }} state=latest update_cache=yes
+  with_items: ZSH_PACKAGES
+  register: zsh_installed
+
+- name: Checkout Oh My Zsh repository
+  when: zsh_installed|success
+  git: |
+    repo={{ OHMYZSH_REPO }}
+    dest=~/.oh-my-zsh
+    force=yes
+  register: repo_checked_out
+
+- name: Place base .zshrc file
+  when: (zsh_installed|success and repo_checked_out|success)
+  template: |
+    src={{ item.src }}
+    dest={{ item.dest }}
+  with_items:
+    - { src: "templates/zshrc.zsh-template", dest: '~/.zshrc' }
+  register: zshrc_installed
