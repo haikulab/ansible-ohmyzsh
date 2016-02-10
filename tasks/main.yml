@@ -26,3 +26,14 @@
   with_items:
     - { src: "templates/zshrc.zsh-template", dest: '~/.zshrc' }
   register: zshrc_installed
+
+- name: Autoload zsh as part of .bashrc file
+  # This action is only run if the `AUTO_LOAD_ZSH` is set to `yes`
+  when: (zsh_installed|success and repo_checked_out|success and AUTO_LOAD_ZSH)
+  ignore_errors: True
+  lineinfile: >
+    dest=~/.bashrc
+    regexp=''
+    line="`which zsh`; # Ansible: Inserted via automation"
+    insertafter=EOF
+    backup=yes

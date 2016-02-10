@@ -39,5 +39,6 @@ Additionally, you can overwrite the variables as part of your playbook.
       - ruby
       - rsync
     ZSH_THEME: "ys"
+    AUTO_LOAD_ZSH: "no"
 ...
 ```

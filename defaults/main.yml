@@ -31,4 +31,12 @@ OHMYZSH_PLUGINS:
 # for specifics what all options do, read files/zshrc.zsh-template
 # you can also really tweak the file and rerun the playbook
 # to install it into place
-ZSH_THEME: "ys"
+ZSH_THEME: "ys" # robbyrussell, ys, etc....
+
+#####################
+# Load on login     #
+#####################
+#
+# When set to yes, ansible will update user .bashrc file
+# to automatically load zsh and with it oh-my-zsh
+AUTO_LOAD_ZSH: no # yes/no
