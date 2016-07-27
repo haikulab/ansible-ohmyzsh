@@ -37,6 +37,6 @@ ZSH_THEME: "ys" # robbyrussell, ys, etc....
 # Load on login     #
 #####################
 #
-# When set to yes, ansible will update user .bashrc file
+# When set to yes, ansible will set zsh as shell for ssh user used to login with
 # to automatically load zsh and with it oh-my-zsh
 AUTO_LOAD_ZSH: no # yes/no

@@ -7,7 +7,7 @@
 - name: Install zsh and friends
   become: yes
   apt: pkg={{ item }} state=latest update_cache=yes
-  with_items: ZSH_PACKAGES
+  with_items: "{{ ZSH_PACKAGES }}"
   register: zsh_installed
 
 - name: Checkout Oh My Zsh repository
@@ -27,13 +27,10 @@
     - { src: "templates/zshrc.zsh-template", dest: '~/.zshrc' }
   register: zshrc_installed
 
-- name: Autoload zsh as part of .bashrc file
+- name: Set ZSH as users shell.
+  become: yes
   # This action is only run if the `AUTO_LOAD_ZSH` is set to `yes`
   when: (zsh_installed|success and repo_checked_out|success and AUTO_LOAD_ZSH)
-  ignore_errors: True
-  lineinfile: >
-    dest=~/.bashrc
-    regexp=''
-    line="`which zsh`; # Ansible: Inserted via automation"
-    insertafter=EOF
-    backup=yes
+  user: |
+    name={{ansible_user}}
+    shell=/usr/bin/zsh
